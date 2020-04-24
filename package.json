@@ -1,0 +1,22 @@
+{
+  "name": "ehn-gin",
+  "version": "1.0.0",
+  "description": "generated sound",
+  "main": "index.js",
+  "keywords": [
+    "generated",
+    "sound"
+  ],
+  "scripts": {
+    "prettier": "node_modules/.bin/prettier --write index.js src/**"
+  },
+  "author": "van-appears",
+  "license": "ISC",
+  "dependencies": {
+    "node-wav": "0.0.2",
+    "pngjs": "^3.4.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.4"
+  }
+}
