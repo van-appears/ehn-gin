@@ -12,7 +12,7 @@ function process(stillToProcess) {
     child.on("exit", () => {
       imageGen(processFile, () => {
         const endTime = new Date().getTime();
-        const seconds = Math.round((endTime - startTime ) / 1000);
+        const seconds = Math.round((endTime - startTime) / 1000);
         console.log(`Finished ${processFile} in ${seconds}s`);
         process(stillToProcess.slice(1));
       });

@@ -1,4 +1,4 @@
-const rotatingValue = require('./rotating-value');
+const rotatingValue = require("./rotating-value");
 
 module.exports = array => {
   const pos = rotatingValue(array.length);
