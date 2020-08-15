@@ -1,4 +1,10 @@
-const { emptyData, numberStream, rangeValue, twelveTone, writeData } = require("../tools");
+const {
+  emptyData,
+  numberStream,
+  rangeValue,
+  twelveTone,
+  writeData
+} = require("../tools");
 const { frames, data } = emptyData(240);
 const { TWO_PI, SAMPLE_RADIAN } = require("../constants");
 
