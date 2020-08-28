@@ -1,12 +1,12 @@
 const { emptyData, pow, writeData } = require("../tools");
-const { TWO_PI, SAMPLE_RATE } = require("../constants");
+const { TWO_PI, SAMPLE_RATE, SAMPLE_RADIAN } = require("../constants");
 const { frames, data } = emptyData(240);
 
 // populate the first three seconds
 for (let index = 0; index < 3 * SAMPLE_RATE; index++) {
-  let val = Math.sin((TWO_PI * index * 0.5) / SAMPLE_RATE);
-  val = Math.sin((TWO_PI * index * (1 + val) * 1.5) / SAMPLE_RATE);
-  val = Math.sin((TWO_PI * index * (100 + 10 * val)) / SAMPLE_RATE);
+  let val = Math.sin(SAMPLE_RADIAN * index * 0.5);
+  val = Math.sin(SAMPLE_RADIAN * index * (1 + val) * 1.5);
+  val = Math.sin(SAMPLE_RADIAN * index * (100 + 10 * val));
   val *= 0.8;
   data[0][index] = val;
   data[1][index] = val;

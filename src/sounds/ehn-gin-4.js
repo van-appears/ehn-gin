@@ -1,5 +1,5 @@
 const { emptyData, pow, rotatingArray, writeData } = require("../tools");
-const { TWO_PI, SAMPLE_RATE } = require("../constants");
+const { TWO_PI, SAMPLE_RADIAN } = require("../constants");
 const { frames, data } = emptyData(240);
 
 // create song structure
@@ -20,7 +20,7 @@ const volume = new Array(180) // LCD of pattern lengths
 
 const addSound = (pitch, pos, wetVol, length, exps, delay) => {
   let rad = 0;
-  const radChange = (TWO_PI * pitch) / SAMPLE_RATE;
+  const radChange = pitch * SAMPLE_RADIAN;
   for (let index = 0; index < length; index++) {
     const env =
       index < 4410 ? index / 4410 : 1.0 - (index - 4410) / (length - 4410);

@@ -21,7 +21,7 @@ const makeSound = (freq1, freq2, osc) => {
     const last3 = sound[index - 3];
     const last2 = sound[index - 2];
     const last1 = sound[index - 1];
-    const softer = (last2 + ((last1 + last3) / 2)) / 2;
+    const softer = (last2 + (last1 + last3) / 2) / 2;
     sound[index - 2] = softer;
   }
   return sound;
