@@ -1,7 +1,7 @@
 # Ehn-Gin
 
-To generate all tracks and track artwork run 'node index.js'
-This can also take numbers arguments of individual tracks to run e.g. 'node index.js 2 3 5' will generate tracks 2, 3 and 5.
+To generate all tracks and track artwork run 'node generate.js'
+This can also take numbers arguments of individual tracks to run e.g. 'node generate.js 2 3 5' will generate tracks 2, 3 and 5.
 
 Generated output available at
 * https://vanappears.bandcamp.com/album/ehn-gin (1-6)

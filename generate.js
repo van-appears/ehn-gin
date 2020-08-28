@@ -22,7 +22,8 @@ function processor(stillToProcess) {
     const startTime = new Date().getTime();
     const child = childProcess.fork(processFile);
     child.on("exit", () => {
-      const imageGen = imageGens[Math.floor((fileNum(processFile) - 1) / 6)];
+      const group = Math.floor((fileNum(processFile) - 1) / 6);
+      const imageGen = imageGens[group % imageGens.length];
       imageGen(processFile, () => {
         const endTime = new Date().getTime();
         const seconds = Math.round((endTime - startTime) / 1000);
