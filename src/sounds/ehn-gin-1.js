@@ -1,14 +1,14 @@
 const { emptyData, pow, writeData } = require("../tools");
-const { TWO_PI, SAMPLE_RATE } = require("../constants");
+const { TWO_PI, SAMPLE_RADIAN, SAMPLE_RATE } = require("../constants");
 const { frames, data } = emptyData(240);
 const { data: source } = emptyData(240);
 
 let rad1 = 0;
 let rad2 = 0;
 let rad3 = 0;
-let rad1diff = (0.061 * TWO_PI) / SAMPLE_RATE;
-let rad2diff = (0.0073 * TWO_PI) / SAMPLE_RATE;
-let rad3diff = (0.00087 * TWO_PI) / SAMPLE_RATE;
+let rad1diff = 0.061 * SAMPLE_RADIAN;
+let rad2diff = 0.0073 * SAMPLE_RADIAN;
+let rad3diff = 0.00087 * SAMPLE_RADIAN;
 
 for (let channel = 0; channel < 2; channel++) {
   for (let index = 0; index < frames; index++) {
@@ -19,13 +19,7 @@ for (let channel = 0; channel < 2; channel++) {
   }
 }
 
-const echo = (
-  startPos,
-  length,
-  sustainFrames,
-  wetStart,
-  wetEnd
-) => {
+const echo = (startPos, length, sustainFrames, wetStart, wetEnd) => {
   startPos = Math.floor(startPos);
   length = Math.floor(length);
 
@@ -37,7 +31,10 @@ const echo = (
 
     for (let index = 0; index < length + 441000; index++) {
       const srcVal = index > length ? 0 : source[channel][startPos + index];
-      const decay = pow((9 + Math.sin(Math.PI * (startPos + index) / frames)) / 10, 0.5);
+      const decay = pow(
+        (9 + Math.sin((Math.PI * (startPos + index)) / frames)) / 10,
+        0.5
+      );
       echodata[position] = echodata[position] * 0.999 + srcVal;
 
       const before1 = echodata[(position + sustainFrames - 4) % sustainFrames];
@@ -55,7 +52,6 @@ const echo = (
   }
 };
 
-
 const echoGroups = [
   [330, 220, 176, 147],
   [440, 330, 220, 147],
@@ -72,7 +68,7 @@ echoGroups.forEach((echoGroup, groupIndex) => {
     echo(startPos, sectionLength, echoLength, 0.1, 0.1);
     echo(startPos, sectionLength, echoLength + 1, flop - 0.1, -flop);
     flop = 0.1 - flop;
-  })
+  });
 });
 
 writeData(data, __filename);
